@@ -1,0 +1,249 @@
+<html>
+    <head>
+        <title>Register</title>
+                <style>
+            $font-family:   "Roboto";
+            $font-size:     14px;
+            $color-primary: #ABA194;
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body{
+                height: 100%;
+                margin: 0;
+                background-image: linear-gradient(to bottom right, #C22ED0, #5FFAE0);
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
+
+
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #ccc;
+                
+            }
+
+            /* Style the tab content */
+            .user .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border-top: none; 
+                border-radius: 8px;
+            }
+
+
+            .user {
+                width: 90%;
+                max-width: 460px;
+                /* margin: 10vh auto; */
+                margin:130px auto;
+                max-height: 540px;
+                align-content: center;
+
+            }
+
+            .user__header {
+                text-align: center;
+                opacity: 0;
+                transform: translate3d(0, 500px, 0);
+                animation: arrive 500ms ease-in-out 0.7s forwards;
+            }
+
+            .user__title {
+                font-size: $font-size;
+                margin-bottom: 10px;
+                font-weight: 500;
+                color:#fff;
+                text-transform:uppercase;
+            }
+
+            .form {
+                margin-top: 40px;
+                border-radius: 6px;
+                overflow: hidden;
+                opacity: 0;
+                transform: translate3d(0, 500px, 0);
+                animation: arrive 500ms ease-in-out 0.9s forwards;
+            }
+
+            .form--no {
+                animation: NO 1s ease-in-out;
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+
+            .form__input {
+                display: block;
+                width: 100%;
+                padding: 20px;
+                font-family: $font-family;
+                -webkit-appearance: none;
+                border: 0;
+                outline: 0;
+                transition: 0.3s;
+
+                &:focus {
+                    background: darken(#fff, 3%);
+                }
+            }
+
+            .btn {
+                display: block;
+                width: 100%;
+                padding: 20px;
+                font-family: $font-family;
+                -webkit-appearance: none;
+                outline: 0;
+                border: 0;
+                background:#e5e8e8 ;   
+                transition: 0.3s;
+                color:black;
+
+                &:hover {
+                    background: darken($color-primary, 5%);
+                }
+            }
+
+            /* .btns {
+               display:block;
+               width: 100%;
+               padding: 20px;
+               font-family: $font-family;
+               -webkit-appearance: none;
+               outline: 0;
+               border: 0;
+               color: teal;
+               background: $color-primary;
+               transition: 0.3s;
+               
+               &:hover {
+                   background: darken($color-primary, 5%);
+               }
+            }  */
+            @keyframes NO {
+                from, to {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+
+                10%, 30%, 50%, 70%, 90% {
+                    -webkit-transform: translate3d(-10px, 0, 0);
+                    transform: translate3d(-10px, 0, 0);
+                }
+
+                20%, 40%, 60%, 80% {
+                    -webkit-transform: translate3d(10px, 0, 0);
+                    transform: translate3d(10px, 0, 0);
+                }
+            }
+
+            @keyframes arrive {
+                0% {
+                    opacity: 0;
+                    transform: translate3d(0, 50px, 0);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+
+            @keyframes move {
+                0% {
+                    background-position: 0 0
+                }
+
+                50% {
+                    background-position: 100% 0
+                }
+
+                100% {
+                    background-position: 0 0
+                }
+            }
+
+            .user .tab{
+                width: 100%;
+                overflow: hidden;
+                margin: 0px;
+                padding-top: 5px; 
+                align-content: center;
+                align-items: center;
+                align: center;
+                /* padding:6px 12px; */
+
+            }
+            .tab{
+                align-items: center; 
+            }
+            .user .tab  button{
+                margin:10px;
+                /* padding-left:20px; */
+                outline: none;
+                font-size: $font-size;
+                font-family:$font-family ;
+                text-transform:uppercase;
+                height: 35px;
+                border: none;
+                align-self: center;
+            }
+            .user .tab button:hover{
+                background-color:#ccc;
+
+            }
+
+            .user .tab .btns button{
+                align-items: right;
+            }
+            .testbtn button{
+                background-color:white;
+                border: 4px solid purple;
+            }
+        </style>
+
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+
+        <script src="new.js"></script>
+    </head>
+
+    <body>
+        <div class="user">
+            <header class="user__header">
+                <h1 class="user__title">Admin Registration</h1>
+                <br>
+                <h1 class="user__title">Sign In</h1>
+                <br>
+                <button onclick=SignIn() id="login" class="btn" type="button"><a style="text-decoration: none; color: teal;" href="login1.html">Log In</a></button>
+                <h1 class="user__title">Register</h1>
+            </header>
+
+            <form class="form" action="Register">
+                <div class="form__group">
+                    <input type="text" placeholder="Username" class="form__input" name="username" />
+                </div>
+                
+                <div class="form__group">
+                    <input type="text" placeholder="Name" class="form__input" name="adname" />
+                </div>
+
+                <div class="form__group">
+                    <input type="email" placeholder="Email" class="form__input" name="email" />
+                </div>
+
+                <div class="form__group">
+                    <input type="password" placeholder="Password" class="form__input" name="password" />
+                </div>
+
+                <input type="submit" class="btn" value="Register">
+            </form>
+        </div>
+    </body>
+</html>
+
